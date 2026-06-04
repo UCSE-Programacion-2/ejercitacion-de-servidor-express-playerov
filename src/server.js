@@ -29,9 +29,10 @@ app.get('/productos', (req, res) => {
 });
 
 app.get('/usuarios/:id', (req, res) => {
-  const usuario = usuarios.find((u) => u.id === parseInt(req.params.id));
+  const usuario = usuarios.find((u) => u.id === parseInt(req.params.id, 10));
   if (!usuario) {
-    return res.status(404).send('Usuario no encontrado.');
+    res.status(404).send('Usuario no encontrado.');
+    return;
   }
   res.json(usuario);
 });
